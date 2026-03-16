@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avinash Patil — Build My Purpose</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04080c;--bg2:#080f16;--bg3:#0c1620;
+  --green:#00ff88;--cyan:#00cfff;--red:#ff2d55;--yellow:#ffd60a;
+  --text:#b8cfe0;--muted:#3a5568;--border:rgba(0,255,136,0.12);
+  --font:'Syne',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden;cursor:none;}
+#cur{width:6px;height:6px;background:var(--green);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:screen;transition:transform 0.1s;}
+#cur2{width:28px;height:28px;border:1px solid rgba(0,255,136,0.4);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:all 0.12s ease;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,136,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.025) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;justify-content:space-between;align-items:center;background:rgba(4,8,12,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:var(--mono);font-size:0.9rem;color:var(--green);letter-spacing:3px;}
+.logo span{color:var(--red);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:var(--mono);font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--green);transition:width 0.3s;}
+.nav-links a:hover{color:var(--green);}
+.nav-links a:hover::after{width:100%;}
+.nav-dot{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:0.6rem;color:var(--green);}
+.pulse{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulseAnim 2s infinite;}
+@keyframes pulseAnim{0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,0.5);}50%{box-shadow:0 0 0 8px rgba(0,255,136,0);}}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 4rem 4rem;position:relative;z-index:2;gap:4rem;}
+.eyebrow{font-family:var(--mono);font-size:0.7rem;color:var(--cyan);letter-spacing:4px;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;}
+.eyebrow::before{content:'';width:30px;height:1px;background:var(--cyan);}
+.hero-name{font-size:clamp(3.5rem,8vw,6.5rem);font-weight:800;line-height:0.88;letter-spacing:-3px;margin-bottom:1rem;color:#fff;}
+.hero-name .stroke{color:transparent;-webkit-text-stroke:1.5px rgba(0,255,136,0.35);}
+.hero-name .glow{color:var(--green);text-shadow:0 0 60px rgba(0,255,136,0.25);}
+.hero-role{font-family:var(--mono);font-size:0.95rem;color:var(--yellow);letter-spacing:2px;margin-bottom:1.8rem;display:flex;align-items:center;gap:6px;}
+.cblink{display:inline-block;width:2px;height:1em;background:var(--yellow);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:middle;}
+@keyframes blink{50%{opacity:0;}}
+.hero-bio{font-size:0.95rem;color:var(--muted);line-height:2;max-width:480px;margin-bottom:2.5rem;}
+.hero-bio strong{color:var(--green);}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-main{padding:0.85rem 2rem;background:var(--green);color:#04080c;font-family:var(--mono);font-size:0.7rem;letter-spacing:2px;text-decoration:none;font-weight:700;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:all 0.2s;display:inline-block;}
+.btn-main:hover{background:#fff;transform:translateY(-2px);}
+.btn-ghost{padding:0.85rem 2rem;border:1px solid rgba(0,255,136,0.25);color:var(--green);font-family:var(--mono);font-size:0.7rem;letter-spacing:2px;text-decoration:none;text-transform:uppercase;transition:all 0.2s;display:inline-block;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));}
+.btn-ghost:hover{background:rgba(0,255,136,0.07);border-color:var(--green);}
+.hero-right{display:flex;justify-content:center;align-items:center;position:relative;}
+.photo-wrap{position:relative;width:340px;height:410px;}
+.photo-frame{position:absolute;inset:0;clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,28px 100%,0 calc(100% - 28px));overflow:hidden;border:1px solid rgba(0,255,136,0.2);}
+.avatar-bg{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:linear-gradient(135deg,#0a1f30,#051520);position:relative;}
+.avatar-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,136,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.04) 1px,transparent 1px);background-size:30px 30px;}
+.av-ring{width:160px;height:160px;border-radius:50%;border:1px solid rgba(0,255,136,0.2);display:flex;align-items:center;justify-content:center;position:relative;animation:rotRing 8s linear infinite;}
+@keyframes rotRing{0%{box-shadow:0 0 30px rgba(0,255,136,0.1);}50%{box-shadow:0 0 60px rgba(0,255,136,0.2);}100%{box-shadow:0 0 30px rgba(0,255,136,0.1);}}
+.av-letters{font-size:5rem;font-weight:800;color:var(--green);line-height:1;text-shadow:0 0 40px rgba(0,255,136,0.4);letter-spacing:-4px;}
+.av-name-tag{font-family:var(--mono);font-size:0.65rem;color:var(--muted);letter-spacing:4px;text-transform:uppercase;position:relative;z-index:1;}
+.av-note{font-family:var(--mono);font-size:0.55rem;color:rgba(0,255,136,0.35);letter-spacing:2px;position:relative;z-index:1;}
+.scan-line{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,255,136,0.04) 50%,transparent 60%);animation:scan 3s linear infinite;pointer-events:none;z-index:2;}
+@keyframes scan{0%{transform:translateY(-100%);}100%{transform:translateY(100%);}}
+.deco-tl{position:absolute;top:-14px;left:-14px;width:48px;height:48px;border-top:2px solid var(--green);border-left:2px solid var(--green);opacity:0.5;}
+.deco-br{position:absolute;bottom:-14px;right:-14px;width:48px;height:48px;border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan);opacity:0.5;}
+.photo-caption{position:absolute;bottom:-26px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:3px;}
+.fbadge{position:absolute;background:var(--bg3);border:1px solid var(--border);padding:7px 12px;font-family:var(--mono);font-size:0.6rem;letter-spacing:1px;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));}
+.fb1{top:10px;right:-65px;color:var(--green);border-color:rgba(0,255,136,0.3);animation:fl1 4s ease-in-out infinite;}
+.fb2{bottom:90px;left:-82px;color:var(--cyan);border-color:rgba(0,207,255,0.3);animation:fl2 5s ease-in-out infinite;}
+.fb3{top:150px;right:-72px;color:var(--yellow);border-color:rgba(255,214,10,0.25);animation:fl1 6s ease-in-out infinite;}
+@keyframes fl1{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes fl2{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+section{padding:5rem 4rem;position:relative;z-index:2;}
+.stag{font-family:var(--mono);font-size:0.65rem;color:var(--green);letter-spacing:4px;text-transform:uppercase;margin-bottom:0.5rem;display:flex;align-items:center;gap:10px;}
+.stag::before{content:'//';color:var(--red);}
+.sh{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;color:#fff;letter-spacing:-2px;margin-bottom:3rem;line-height:1.05;}
+#about{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start;max-width:1100px;}
+.ap{font-size:0.9rem;color:var(--muted);line-height:2;margin-bottom:1rem;}
+.ap strong{color:var(--green);}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem;}
+.stat{background:var(--bg3);border:1px solid var(--border);padding:1.2rem;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));text-align:center;}
+.sn{font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1;}
+.sl{font-size:0.65rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+.skills{display:flex;flex-direction:column;gap:14px;}
+.sk{display:flex;flex-direction:column;gap:5px;}
+.sk-top{display:flex;justify-content:space-between;}
+.sk-name{font-family:var(--mono);font-size:0.72rem;color:var(--text);letter-spacing:1px;}
+.sk-pct{font-family:var(--mono);font-size:0.7rem;color:var(--green);}
+.sk-bar{height:2px;background:rgba(255,255,255,0.04);border-radius:2px;overflow:hidden;}
+.sk-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--cyan));border-radius:2px;animation:fa 1.8s ease forwards;}
+@keyframes fa{from{width:0;}}
+#projects{background:var(--bg);}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;max-width:1100px;}
+.pc{background:var(--bg3);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));transition:all 0.3s;}
+.pc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,136,0.04),transparent);opacity:0;transition:opacity 0.3s;}
+.pc:hover{border-color:var(--green);transform:translateY(-5px);}
+.pc:hover::before{opacity:1;}
+.pnum{font-family:var(--mono);font-size:0.58rem;color:var(--muted);letter-spacing:3px;margin-bottom:1rem;}
+.picon{font-size:2rem;margin-bottom:0.8rem;}
+.ptitle{font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:0.7rem;}
+.pdesc{font-size:0.82rem;color:var(--muted);line-height:1.8;margin-bottom:1.5rem;}
+.ptags{display:flex;gap:6px;flex-wrap:wrap;}
+.ptag{font-family:var(--mono);font-size:0.58rem;padding:2px 8px;border:1px solid rgba(0,255,136,0.2);color:var(--green);letter-spacing:1px;text-transform:uppercase;}
+.ptag.r{border-color:rgba(255,45,85,0.3);color:var(--red);}
+.ptag.y{border-color:rgba(255,214,10,0.2);color:var(--yellow);}
+.ptag.c{border-color:rgba(0,207,255,0.2);color:var(--cyan);}
+#cyber{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;max-width:1100px;}
+.cc2{background:var(--bg3);border:1px solid rgba(255,45,85,0.12);padding:1.5rem;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:all 0.3s;}
+.cc2:hover{border-color:rgba(255,45,85,0.4);transform:translateY(-3px);}
+.cicon{font-size:1.6rem;margin-bottom:0.8rem;}
+.ctitle2{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.cdesc{font-size:0.78rem;color:var(--muted);line-height:1.7;}
+.threat{display:inline-block;font-family:var(--mono);font-size:0.55rem;padding:2px 8px;background:rgba(255,45,85,0.08);border:1px solid rgba(255,45,85,0.2);color:var(--red);margin-top:8px;letter-spacing:1px;}
+.threat.med{background:rgba(255,214,10,0.06);border-color:rgba(255,214,10,0.2);color:var(--yellow);}
+#ideas{background:var(--bg);}
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;max-width:1100px;}
+.ic{background:var(--bg3);border:1px solid rgba(0,207,255,0.1);padding:1.5rem;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:all 0.3s;}
+.ic:hover{border-color:rgba(0,207,255,0.35);transform:translateY(-3px);}
+.inum{font-family:var(--mono);font-size:0.58rem;color:var(--cyan);letter-spacing:3px;margin-bottom:6px;}
+.ititle{font-size:1rem;font-weight:700;color:#fff;margin-bottom:5px;}
+.idesc{font-size:0.78rem;color:var(--muted);line-height:1.75;}
+.istatus{font-family:var(--mono);font-size:0.55rem;margin-top:8px;padding:2px 8px;display:inline-block;letter-spacing:1px;}
+.wip{background:rgba(255,214,10,0.08);border:1px solid rgba(255,214,10,0.2);color:var(--yellow);}
+.plan{background:rgba(0,207,255,0.07);border:1px solid rgba(0,207,255,0.18);color:var(--cyan);}
+#contact{background:var(--bg2);border-top:1px solid var(--border);text-align:center;}
+#contact .stag{justify-content:center;}
+.contact-sub{font-size:0.88rem;color:var(--muted);margin-bottom:3rem;line-height:1.9;}
+.contact-sub strong{color:var(--text);}
+.ccards{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:3rem;}
+.ccard{background:var(--bg3);border:1px solid var(--border);padding:1.2rem 2rem;display:flex;align-items:center;gap:12px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:all 0.2s;text-decoration:none;}
+.ccard:hover{border-color:var(--green);transform:translateY(-3px);}
+.cclabel{font-family:var(--mono);font-size:0.58rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+.ccval{font-family:var(--mono);font-size:0.72rem;color:var(--green);letter-spacing:1px;}
+footer{text-align:center;font-family:var(--mono);font-size:0.58rem;color:var(--muted);letter-spacing:2px;padding:2rem;border-top:1px solid var(--border);position:relative;z-index:2;}
+.fu{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fu.vis{opacity:1;transform:translateY(0);}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  #hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;gap:2.5rem;}
+  .hero-right{order:-1;}
+  .photo-wrap{width:240px;height:290px;}
+  .fbadge{display:none;}
+  section{padding:4rem 1.5rem;}
+  .about-grid{grid-template-columns:1fr;gap:2rem;}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<nav>
+  <div class="logo">&lt;<span>AVI</span>.exe/&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#cyber">Cyber</a></li>
+    <li><a href="#ideas">Ideas</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-dot"><div class="pulse"></div>AVAILABLE</div>
+</nav>
+
+<section id="hero">
+  <div>
+    <div class="eyebrow">Building My Purpose</div>
+    <h1 class="hero-name">
+      <div>AVINASH</div>
+      <div class="stroke">PATIL</div>
+      <div class="glow">.</div>
+    </h1>
+    <div class="hero-role">&gt;&nbsp;<span id="typing">Content Creator</span><span class="cblink"></span></div>
+    <p class="hero-bio">I don't just create content — I <strong>build purpose</strong> through it. From <strong>cyber security awareness</strong> to motivational storytelling, every video I make is designed to make people stop, think, and act.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-main">See My Work</a>
+      <a href="#contact" class="btn-ghost">Let's Connect</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-wrap">
+      <div class="deco-tl"></div>
+      <div class="deco-br"></div>
+      <div class="photo-frame">
+        <div class="avatar-bg">
+          <div class="scan-line"></div>
+          <div class="av-ring"><div class="av-letters">AP</div></div>
+          <div class="av-name-tag">Avinash Patil</div>
+          <div class="av-note">// replace with your photo</div>
+        </div>
+      </div>
+      <div class="fbadge fb1">CYBER EXPERT</div>
+      <div class="fbadge fb2">CONTENT CREATOR</div>
+      <div class="fbadge fb3">BUILD PURPOSE</div>
+      <div class="photo-caption">AVINASH PATIL // CREATOR</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="stag">About Me</div>
+  <div class="sh">Who Is Avinash</div>
+  <div class="about-grid">
+    <div>
+      <p class="ap">I'm <strong>Avinash Patil</strong> — a content creator, cyber security enthusiast, and someone who believes that <strong>knowledge shared is power multiplied</strong>.</p>
+      <p class="ap">I started creating because I saw people around me unaware of how vulnerable they are online. My mission: <strong>make cyber security easy to understand</strong> through short, impactful videos.</p>
+      <p class="ap">I edit my own videos, write my own scripts, and build everything from scratch — because I believe in <strong>doing it yourself</strong> and learning every step of the way.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="sn">50+</div><div class="sl">Videos</div></div>
+        <div class="stat"><div class="sn">1K+</div><div class="sl">Followers</div></div>
+        <div class="stat"><div class="sn">100%</div><div class="sl">Self Made</div></div>
+      </div>
+    </div>
+    <div class="skills">
+      <div class="sk"><div class="sk-top"><span class="sk-name">Video Editing</span><span class="sk-pct">92%</span></div><div class="sk-bar"><div class="sk-fill" style="width:92%"></div></div></div>
+      <div class="sk"><div class="sk-top"><span class="sk-name">Cyber Security</span><span class="sk-pct">85%</span></div><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div></div>
+      <div class="sk"><div class="sk-top"><span class="sk-name">Content Strategy</span><span class="sk-pct">88%</span></div><div class="sk-bar"><div class="sk-fill" style="width:88%"></div></div></div>
+      <div class="sk"><div class="sk-top"><span class="sk-name">Podcast Editing</span><span class="sk-pct">78%</span></div><div class="sk-bar"><div class="sk-fill" style="width:78%"></div></div></div>
+      <div class="sk"><div class="sk-top"><span class="sk-name">Instagram Reels</span><span class="sk-pct">95%</span></div><div class="sk-bar"><div class="sk-fill" style="width:95%"></div></div></div>
+      <div class="sk"><div class="sk-top"><span class="sk-name">Storytelling</span><span class="sk-pct">90%</span></div><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="stag">My Work</div>
+  <div class="sh">Projects</div>
+  <div class="pgrid">
+    <div class="pc fu"><div class="pnum">01 // CYBER</div><div class="picon">🔐</div><div class="ptitle">Cyber Protection Reels</div><div class="pdesc">30–60 second Instagram Reels educating people on staying safe online. Glitch effects, bold text, dark cinematic aesthetic.</div><div class="ptags"><span class="ptag">Instagram</span><span class="ptag r">Cyber</span><span class="ptag c">CapCut</span></div></div>
+    <div class="pc fu"><div class="pnum">02 // MOTIVATION</div><div class="picon">🎬</div><div class="ptitle">Study Motivation Videos</div><div class="pdesc">Cinematic B-roll + powerful voiceover videos designed to make students stop procrastinating and take action immediately.</div><div class="ptags"><span class="ptag y">Cinematic</span><span class="ptag">Motivation</span><span class="ptag c">YouTube</span></div></div>
+    <div class="pc fu"><div class="pnum">03 // AUDIO</div><div class="picon">🎙️</div><div class="ptitle">Podcast Series</div><div class="pdesc">Tech, mindset, and life — audio content that goes deep. Edited in Audacity with clean professional sound design.</div><div class="ptags"><span class="ptag c">Podcast</span><span class="ptag">Audacity</span><span class="ptag r">Audio</span></div></div>
+    <div class="pc fu"><div class="pnum">04 // CAMPAIGN</div><div class="picon">⚠️</div><div class="ptitle">Digital Safety Campaign</div><div class="pdesc">A series of posts and videos raising awareness about phishing, weak passwords, and online privacy for everyday people.</div><div class="ptags"><span class="ptag r">Awareness</span><span class="ptag y">Campaign</span><span class="ptag">Social</span></div></div>
+  </div>
+</section>
+
+<section id="cyber">
+  <div class="stag">Cyber Expertise</div>
+  <div class="sh">Threats I Teach</div>
+  <div class="cgrid">
+    <div class="cc2 fu"><div class="cicon">🎣</div><div class="ctitle2">Phishing Attacks</div><div class="cdesc">Fake emails designed to steal your login credentials and personal data. The #1 attack method worldwide.</div><div class="threat">HIGH THREAT</div></div>
+    <div class="cc2 fu"><div class="cicon">🔑</div><div class="ctitle2">Weak Passwords</div><div class="cdesc">Using simple passwords is like leaving your front door open. I teach how to create and manage strong ones.</div><div class="threat">CRITICAL</div></div>
+    <div class="cc2 fu"><div class="cicon">📶</div><div class="ctitle2">Public WiFi Risks</div><div class="cdesc">Public networks are hunting grounds for hackers. Always use a VPN — no exceptions, ever.</div><div class="threat">HIGH THREAT</div></div>
+    <div class="cc2 fu"><div class="cicon">🦠</div><div class="ctitle2">Malware & Ransomware</div><div class="cdesc">Malicious software that locks your files or secretly monitors your device. Know the signs before it's too late.</div><div class="threat">CRITICAL</div></div>
+    <div class="cc2 fu"><div class="cicon">👤</div><div class="ctitle2">Social Engineering</div><div class="cdesc">Hackers manipulate people psychologically. The weakest link in any system is always the human.</div><div class="threat med">MEDIUM</div></div>
+    <div class="cc2 fu"><div class="cicon">📱</div><div class="ctitle2">App Permissions</div><div class="cdesc">That free app asking for your camera? It's harvesting your data. Learn what to allow and what to block.</div><div class="threat med">MEDIUM</div></div>
+  </div>
+</section>
+
+<section id="ideas">
+  <div class="stag">Creative Vision</div>
+  <div class="sh">Ideas In Progress</div>
+  <div class="igrid">
+    <div class="ic fu"><div class="inum">IDEA 01</div><div class="ititle">Cyber Safety for Parents</div><div class="idesc">A video series for parents — teaching them to protect their kids online in simple, non-technical language.</div><div class="istatus wip">IN PROGRESS</div></div>
+    <div class="ic fu"><div class="inum">IDEA 02</div><div class="ititle">Hacker Mindset Series</div><div class="idesc">Think like a hacker to defend like one. Showing how hackers actually think — helping normal people stay 10 steps ahead.</div><div class="istatus plan">PLANNING</div></div>
+    <div class="ic fu"><div class="inum">IDEA 03</div><div class="ititle">30-Day Digital Detox</div><div class="idesc">Challenge followers to clean up their digital life — better passwords, privacy settings, and healthier online habits.</div><div class="istatus plan">PLANNING</div></div>
+    <div class="ic fu"><div class="inum">IDEA 04</div><div class="ititle">Build My Purpose Podcast</div><div class="idesc">Real conversations with self-made creators who built their purpose from nothing. No degree — just pure fire.</div><div class="istatus wip">IN PROGRESS</div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="stag">Get In Touch</div>
+  <div class="sh">Let's Build Together</div>
+  <p class="contact-sub">Got a collab idea? Want to talk cyber security?<br><strong>Avinash is always open to real conversations.</strong></p>
+  <div class="ccards">
+    <a href="mailto:aavi53423@gmail.com" class="ccard">
+      <span style="font-size:1.3rem;">📧</span>
+      <div><div class="cclabel">Email</div><div class="ccval">aavi53423@gmail.com</div></div>
+    </a>
+    <a href="https://instagram.com/avinash_patil_153" target="_blank" class="ccard">
+      <span style="font-size:1.3rem;">📸</span>
+      <div><div class="cclabel">Instagram</div><div class="ccval">@avinash_patil_153</div></div>
+    </a>
+  </div>
+  <a href="mailto:aavi53423@gmail.com" class="btn-main">Send Message ↗</a>
+</section>
+
+<footer>&lt; AVINASH PATIL // BUILD MY PURPOSE &gt; &nbsp;·&nbsp; © 2026 &nbsp;·&nbsp; ALL RIGHTS RESERVED</footer>
+
+<script>
+const cur=document.getElementById("cur"),cur2=document.getElementById("cur2");
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-3+"px";cur.style.top=my-3+"px";});
+(function ac(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;cur2.style.left=rx-14+"px";cur2.style.top=ry-14+"px";requestAnimationFrame(ac);})();
+document.querySelectorAll("a,button").forEach(el=>{
+  el.addEventListener("mouseenter",()=>{cur.style.transform="scale(3)";cur2.style.transform="scale(1.5)";});
+  el.addEventListener("mouseleave",()=>{cur.style.transform="";cur2.style.transform="";});
+});
+const roles=["Content Creator","Cyber Expert","Video Editor","Podcast Host","Purpose Builder"];
+let ri=0,ci=0,del=false;
+const tel=document.getElementById("typing");
+function type(){
+  const w=roles[ri];
+  if(!del){tel.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(type,2000);return;}}
+  else{tel.textContent=w.slice(0,--ci);if(ci===0){del=false;ri=(ri+1)%roles.length;}}
+  setTimeout(type,del?55:110);
+}
+type();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("vis");});},{threshold:0.1});
+document.querySelectorAll(".fu").forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
